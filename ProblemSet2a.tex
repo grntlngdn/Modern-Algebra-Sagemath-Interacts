@@ -1,0 +1,46 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\oddsidemargin=-.25in 
+\evensidemargin=-.25in 
+\topmargin=-.75in 
+\textwidth=7in 
+\textheight=10in
+
+\def\p{\varphi}
+\def\s{\sigma}
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\def\C{\mathbb C}
+
+
+
+
+
+\begin{document}
+A \emph{finite continued fraction} is of the form
+\[
+a_0+\cfrac{1}{a_1+
+\cfrac{1}{a_2+
+\cfrac{1}{\begin{split}a_3+\ddots\qquad \quad\\
++\cfrac{1}{a_n}.\end{split}
+}}}
+\]
+Note by adding $a_{n-1}+\frac{1}{a_n}$ to get a single fraction one is given a shorter continued fraction ending with $a_{n-2}+\frac{1}{\frac{a_{n-1}a_n+1}{a_n}}$, and then reciprocating the term on the right one can repeat this process; continuing with such a process one will eventually write this entire continued fraction as a single fraction. Assuming $a_i\in\Z$ for $i\ge0$, this shows the entire continued fraction is equal to some common fraction $\frac{h}{k}$ where $h,k\in \Z$. We will assume this as well as that $a_i>0$ for $i>0$ and $a_n>1$ from now on, in which case given $h,k\in \Z$ there is only one way to write $\frac{h}{k}$ in this form; call this its continued fraction representation.
+
+Let $M>2$ be an integer.
+
+\begin{enumerate}
+
+\item
+Make a conjecture of the form "in the set of continued fractions representing some $\frac{h}{k}$ where $0<h,k<M$ the longest continued fraction (the one with $n$ the greatest) is \underline{\hspace{3cm}}," after observing continued fraction of various $\frac{a}{b}$.
+
+\item
+Prove a correct statement of this relationship, which will be given to you.
+
+\end{enumerate}
+(The correct version of the statement is that in the set of continued fractions representing some $\frac{h}{k}$ where $0<h,k<M$ the longest continued fraction (the one with $n$ the greatest) is the one corresponding to the $k$ that is the last Fibonacci number ($1,1,2,3\dots$) before $M$ and corresponding to the $h$ that is the last Fibonacci number before $k$.)
+
+\end{document}
