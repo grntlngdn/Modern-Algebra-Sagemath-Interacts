@@ -1,0 +1,15 @@
+
+<p>1.&nbsp; Let $m,n\ge 2$. Make a conjecture of the form "there are _______ pairs of numbers $(i,j)$ with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$0\le i &lt;m, 0\le j&lt;n$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">so that</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$y\equiv i (\text{mod }m)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$y\equiv j (\text{mod }n)$$</p>
+<p>has a solution," after observing existance of solutions for various $i,j$ and $m,n$.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2.&nbsp; Prove a correct version of this conjecture, which will be given to you.</p>
+
+{{{id=1|
+
+///
+}}}
