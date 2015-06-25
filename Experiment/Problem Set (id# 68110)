@@ -1,0 +1,10 @@
+
+<p>1.&nbsp; Prove that $\binom{n}{k}$ is an integer for all $n&gt;0$ and all integers $k$ such that $0\le k \le n$.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2.&nbsp; Let $a$ be a positive integer, and let $p_1,\dots,p_n$ be distinct primes such that $a=p_1^{a_1}p_2^{a_2}\cdots p_n^{a_n}$. Prove that the number of divisors of $a$ is $\prod_{i=1}^n(a_i+1)$.</p>
+
+{{{id=1|
+
+///
+}}}
