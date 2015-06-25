@@ -1,0 +1,13 @@
+
+<p>Let $D$ be the set of positive integers divisible by $4$ (i.e $4 \mathbb Z^+=\{4,8,12,\dots\}$) together with regular addition and multiplication (note that both of these operations on elements of this set result in another element of this set). Call $r$ an <em>irreducible</em> of $D$ if it cannot be factored into a product of two elements of $D$, and&nbsp;<em>reducible</em> otherwise (e.g. $2^5=2^2*2^3$ is reducible, but $3^22^3$ is irreducible in $D$). Note that for some $r$ reducible in $D$, $r$ has multiple factorizations into irreducibles (e.g. $2^3*2^3=2^2*2^2*2^2$).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>1.&nbsp; Prove that there will be precisely&nbsp;<em>one</em> way to factor the integer $r\in D$ into irreducibles&nbsp;of $D$ (or $r$ is an irreducible of $D$ itself)&nbsp;if and only if one of three conditions hold: for $i=2,3,4,5,$ or $7$, $r=2^i$; for $q\ne 2$ a prime and $i=2,3,$ or $4$, $r=qp^i$; or for $k\in \mathbb Z^+$ not divisible by 4, $r=k4$.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2.&nbsp; &nbsp;Prove that there will be precisely&nbsp;<em>two</em> different ways to factor the integer $r\in D$ into irreducibles of $D$ if and only if one of three conditions hold: for $i=6,8,9,10,11,$ or $13$, $r=2^i$; for $q\ne 2$ a prime and $i=5,6,$ or $7$, $r=q2^i$; or for primes $q_1\ne q_2\ne 2$ (and $q_1\ne 2$), $r=q_1q_22^4$.</p>
+
+{{{id=1|
+
+///
+}}}
