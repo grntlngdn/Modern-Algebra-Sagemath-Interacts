@@ -1,0 +1,15 @@
+<p>Let $n$ be a a positive integer. Make a conjecture of the form "the number of divisors of $n$ is ___________," after observing sets of divisors of various $n$ (note you may want to define other variables in terms of $n$ to construct a formula for the number of divisors).</p>
+<p>Click in then press "evaluate" on the cell immediately below these instructions. You will now be able to manipulate the controls to observe their effects. Note $n=a+i$. Calculations can be done by typing ("23*29", for instance) in the bottom most cell and then pressing "evaluate".</p>
+<p>&nbsp;Write down ten of the values of $n$ that you observe on your paper along with the corresponding lists of factors. Once you believe you have completed your conjecture: write it down, write down three values of $n$ that you haven't observed below as well as the number of divisors that your conjecture predicts these $n$ will have, and then write down whether or not inputting these values below confirms this. If it does, press the close button at the bottom of the screen. Otherwise, observe more values of $r$ and $p$ below to come up with another conjecture, and then repeat these steps starting with writing down the new conjecture.</p>
+
+{{{id=1|
+@interact
+def _(a=(1..50),i=0):
+    print '%2s %0s'%(
+        'n =',a+i)
+    print ''
+    print divisors(a+i)
+    print ''
+    print sigma(a+i,0)
+///
+}}}
