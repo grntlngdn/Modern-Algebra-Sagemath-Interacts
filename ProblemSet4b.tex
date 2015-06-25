@@ -1,0 +1,33 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\oddsidemargin=-.25in 
+\evensidemargin=-.25in 
+\topmargin=-.75in 
+\textwidth=7in 
+\textheight=10in
+
+\def\p{\varphi}
+\def\s{\sigma}
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\def\C{\mathbb C}
+
+
+
+
+
+\begin{document}
+Let $D$ be the set of positive integers divisible by 4 (i.e $4\Z^+\{4,8,12,\dots\}$) together with regular addition and multiplication (note that both of these operations on elements of this set result in another element of this set).
+Call $k$ an \emph{irreducible} of $D$ if it cannot be factored into a product of two elements of $D$, and \emph{reducible} otherwise (e.g. $2^5=(2^2)*(2^3)$ is reducible, but $3^22^3$ is irreducible in $D$). Note that for some $r$ reducible in $D$, $r$ has multiple factorizations into irreducibles (e.g. $2^3*2^3=2^2*2^2*2^2$).
+
+\begin{enumerate}
+\item Prove that there will be precisely \emph{one} way to factor the integer $k\in D$ into irreducibles of $D$ if and only if one of three conditions hold:  for $i=2,3,4,5,$ or $7$, $r=2^i$; for $q\ne 2$ a prime and $i=2,3,$ or $4$, $r=qp^i$; or for $k\in \mathbb Z^+$ not divisible by 4, $r=k4$.
+
+\item  Prove that there will be precisely \emph{two} different ways to factor the integer $k\in D$ into irreducibles of $D$ if and only if one of three conditions hold: for $i=6,8,9,10,11,$ or $13$, $k=p^i$; for $q\ne p$ a prime and $i=5,6,$ or $7$, $k=qp^i$; or for primes $q_1\ne q_2\ne p$, $k=q_1q_2p^4$.
+
+\end{enumerate}
+
+\end{document}
