@@ -1,0 +1,70 @@
+
+<div><p id='label'></p>
+
+</div>
+
+{{{id=9|
+
+///
+}}}
+
+<p>A&nbsp;<em>finite continued fraction</em> is of the form</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{\begin{split}a_3+\ddots\qquad \quad\\+\cfrac{1}{a_n}.\end{split}}}}$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">&nbsp;</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">Note by adding $a_{n-1}+\frac{1}{a_n}$ to get a single fraction one is given a shorter continued fraction ending with $a_{n-2}+\frac{1}{\frac{a_{n-1}a_n+1}{a_n}}$, and then reciprocating the term on the right one can repeat this process; continuing with such a process one will eventually write this entire continued fraction as a single fraction. Assuming $a_i\in\mathbb Z$ for $i\ge0$, this shows the entire continued fraction is equal to some common fraction $\frac{h}{k}$ where $h,k\in \mathbb Z$. We will assume this as well as that $a_i&gt;0$ for $i&gt;0$ and $a_n&gt;1$ from now on, in which case given $h,k\in \mathbb Z$ there is only one way to write $\frac{h}{k}$ in this form; call this its continued fraction representation.</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">Let $M&gt;2$ be an integer. Before continuing write down a continued fraction with $n&gt;4$ and the common fraction that it represents on your paper. Make a conjecture of the form "in the set of continued fractions representing some $\frac{h}{k}$ where $0&lt;h,k&lt;M$ the longest continued fraction (the one with $n$ the greatest) is ________," after observing continued fractions of various $\frac{a}{b}$.</p>
+<p>Click in then press "evaluate" on the cell immediately below these instructions. You will now be able to manipulate the controls to observe their effects. Note $a=m+i$ and $b=n+j$. Calculations can be done by typing ("2+(1/(3+1/4))", for instance) in the bottom most cell and then pressing "evaluate".</p>
+<p>&nbsp;Write down ten of the common fractions and corresponding continued fractions that you observe on your paper. Once you believe you have completed your conjecture: write it down, write down a value of $M$ greater than 100 and greater than any value of $a$ or $b$ you have observed and the values $h,k&lt;M$ that your conjecture predicts will give the longest continued fraction, write down ten values of $\frac{a}{b}$ with $a,b&lt;M$ that you haven't observed below along with the lengths of their continued fractions. If the lengths are all less than that of $\frac{h}{k}$, press the close button at the bottom of the screen. Otherwise, observe more values of $r$ and $p$ below to come up with another conjecture, and then repeat these steps starting with writing down the new conjecture.</p>
+
+{{{id=3|
+@interact
+def _(i=(1..50),m=0,j=(1..50),n=0):
+    print '%2s %0s %5s %0s'%(
+        'a =',m+i,'b =',n+j)
+    print ''
+    print continued_fraction((m+i)/(n+j))
+    print ''
+    print len(continued_fraction((m+i)/(n+j)))
+///
+}}}
+
+{{{id=7|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=8|
+
+///
+}}}
