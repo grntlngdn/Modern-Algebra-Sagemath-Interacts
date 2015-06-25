@@ -1,0 +1,46 @@
+
+<div><p id='label'></p>
+
+</div>
+<p>Let $(a,b,c)$ be any Pythagorean triple (i.e. $a^2+b^2=c^2$). Prove that $a$ and $b$ cannot both be odd. (Hint: Look at the remainders of $a,b$ and $c$ when you divide by 4.)</p>
+
+{{{id=4|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=5|
+
+///
+}}}
