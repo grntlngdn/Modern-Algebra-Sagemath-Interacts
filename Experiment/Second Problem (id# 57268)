@@ -1,0 +1,51 @@
+
+<div><p id='label'></p>
+
+</div>
+<p>Let $m_1,m_2\ge 2$. Prove that there are $[m_1,m_2]$ (this is the least common multiple of $m_1$ and $m_2$) pairs of numbers $(a_1,a_2)$ with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$0\le a_1 &lt;m_1, 0\le a_2&lt;m_2$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">so that</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_1 (\text{mod }m_1)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_2 (\text{mod }m_2)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">has a solution.</p>
+
+{{{id=1|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=3|
+
+///
+}}}
