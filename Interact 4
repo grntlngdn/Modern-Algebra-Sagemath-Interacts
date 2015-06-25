@@ -1,0 +1,38 @@
+{{{id=61|
+attach /media/sf_SageFiles/Problem4.sage
+P=Primes()
+///
+}}}
+
+<p>Let $D$ be the set of positive integers divisible by 4 (i.e $4 \mathbb Z=\{4,8,12,\dots\}$) together with regular addition and multiplication (note that both of these operations on elements of this set result in another element of this set). Call $r$ an&nbsp;<em>irreducible</em> of $D$ if it cannot be factored into a product of two elements of $D$, and&nbsp;<em>reducible</em> otherwise (e.g. $2^5=2^2*2^3$ is reducible, but $2^3$ is irreducible in $D$). Note that for some $r$ reducible in $D$, $r$ has distinct factorizations (changes in order don't count as distinct) into irreducibles (e.g. $2^3*2^3=2^2*2^2*2^2$). Before continuing write down two distinct factorizations for some $r$ (other than $2^6$) in $4\mathbb Z$ on your paper, as well as how many distinct factorizations this $r$ has in total in $4\mathbb Z$ with a brief justification. Make a conjecture of the form "there will be precisely <em>two</em> different ways to factor $r\in D$ as a product of irreducibles of $D$ if and only if ___________," after observing factorizations of various $r\in D$ for several $p$.</p>
+<p>Click in then press "evaluate" on the cell above these instructions, and then on the cell immediately below these instructions. You will now be able to manipulate the controls to observe their effects. To get yourself started, compare the factorizations of $r=6480$ and $9072$. Note you will need to divide $r$ by 4 to determine what value of $k$ to use. Calculations can be done by typing ("6480/4", for instance) in the bottom most cell and then pressing "evaluate".</p>
+<p>&nbsp; Write down ten of the other values of $r$ that you observe on your paper along with the corresponding factorizations. Once you believe you have completed your conjecture: write it down, write down three values for $r$ that your conjecture predicts will give three different factorizations and that you haven't observed below, and then write down whether or not inputting these values below confirms this. If it does, press the close button at the bottom of the screen. Otherwise, observe more values of $r$ below to come up with another conjecture, and then repeat these steps starting with writing down the new conjecture.</p>
+
+{{{id=5|
+@interact
+def _(k=1):
+
+    
+    r=k*4
+    print '%2s %0s'%(
+        'r = 4k = ',r)
+    print ''
+    print 'The unique factorization into primes of r is'
+    print factor(r)
+    print ''
+    print ''
+    l=len(factorIrr(r,2))
+    if factorIrrC(r,2)>0:
+        print 'This will take too long, but here are some example factorizations of '+str(r)+' into irreduccibles of D:'
+    else:
+        print 'In D, '+str(r)+' factors into irreducibles '+str(l)+' way(s):'
+    for j in range(l):
+        f=''
+        for i in range(len(factorIrr(r,2)[j])):
+            if i==0:
+                f=f+str(factorIrr(r,2)[j][0])
+            else:
+                f=f+'*'+str(factorIrr(r,2)[j][i])
+        print f
+///
+}}}
