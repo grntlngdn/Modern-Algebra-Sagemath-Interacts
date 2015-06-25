@@ -1,0 +1,10 @@
+
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">1.&nbsp; Let $a$ be a square-free positive integer (square-free means for all $k\in \mathbb Z$ if $k^2|a$, then $k=\pm 1$). Let $p_1,\dots,p_n$ be primes such that $a=p_1p_2\cdots p_n$. Prove that the number of divisors of $a$ is $2^n$.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2.&nbsp; Let $a$ be a positive integer, and let $p_1,\dots,p_n$ be distinct primes such that $a=p_1^{a_1}p_2^{a_2}\cdots p_n^{a_n}$. Prove that the number of divisors of $a$ is $\prod_{i=1}^n(a_i+1)$.</p>
+
+{{{id=1|
+
+///
+}}}
