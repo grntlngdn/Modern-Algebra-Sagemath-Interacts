@@ -1,0 +1,76 @@
+
+<div><p id='label'></p>
+
+</div>
+
+{{{id=1|
+attach /media/sf_SageFiles/Problem1.sage
+///
+}}}
+
+<p>Write down two values $m\ne n$ greater than 3, and for each $0\le i &lt;m, 0\le j&lt;n$ write down a solution of the set of congruences in equation (1) or that there are none (label each of these with the $i,j$ they correspond to); if for any of your values you said there was no solution, give a brief justification for this claim for one instance. Let $m,n\ge 2$. Make a conjecture of the form "there are _______ pairs of numbers $(i,j)$ with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$0\le i &lt;m, 0\le j&lt;n$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">so that</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; (1)</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$y\equiv i (\text{mod }m)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$y\equiv j (\text{mod }n)$$</p>
+<p>has a solution," after observing existance of solutions for various $i,j$ and $m,n$.</p>
+<p>Click in then press "evaluate" on the cell above these instructions, and then on the cell immediately below these instructions. You will now be able to manipulate the controls to observe their effects. Note the "x"s in the table below are meaningless placeholders, and should be ignored. Calculations can be done by typing ("15%7", for instance) in the bottom most cell and then pressing "evaluate".</p>
+<p>&nbsp;Write down ten of the values of $m$ and $n$ that you observe on your paper along with the corresponding numbers of pairs $(i,j)$ that have solutions. Once you believe you have completed your conjecture: write it down, write down three pairs of values $m\ne n$ that you haven't observed below and the number of solutions that your conjecture predicts there will be for each pair, and then write down whether or not inputting these values below confirms this. If it does, press the close button at the bottom of the screen. Otherwise, observe more values of $m$ and $n$ below to come up with another conjecture, and then repeat these steps starting with writing down the new conjecture.</p>
+
+{{{id=7|
+@interact
+def _(m=(1..11),n=(1..30)):
+    print '                           i'
+    print ''
+    print '%5s %5s %5s %5s %5s %5s %5s %5s %5s %5s %5s %5s'%(
+        'j',hor_axis(0,m),hor_axis(1,m),hor_axis(2,m),hor_axis(3,m),hor_axis(4,m),hor_axis(5,m),
+        hor_axis(6,m),hor_axis(7,m),hor_axis(8,m),hor_axis(9,m),hor_axis(10,m))
+    print ''
+    for j in range(n):
+        print '%5s %5s %5s %5s %5s %5s %5s %5s %5s %5s %5s %5s'%(
+            j,crt_solution(j,0,n,m),crt_solution(j,1,n,m),crt_solution(j,2,n,m),crt_solution(j,3,n,m),crt_solution(j,4,n,m),crt_solution(j,5,n,m),
+            crt_solution(j,6,n,m),crt_solution(j,7,n,m),crt_solution(j,8,n,m),crt_solution(j,9,n,m),crt_solution(j,10,n,m))
+///
+}}}
+
+{{{id=9|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=10|
+
+///
+}}}
