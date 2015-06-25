@@ -1,0 +1,13 @@
+
+<p>Let $D$ be the set of positive integers divisible by $4$ (i.e $4 \mathbb Z^+=\{4,8,12,\dots\}$) together with regular addition and multiplication (note that both of these operations on elements of this set result in another element of this set). Call $r$ an <em>irreducible</em> of $D$ if it cannot be factored into a product of two elements of $D$, and&nbsp;<em>reducible</em> otherwise (e.g. $2^5=2^2*2^3$ is reducible, but $3^22^3$ is irreducible in $D$). Note that for some $r$ reducible in $D$, $r$ has multiple factorizations into irreducibles (e.g. $2^3*2^3=2^2*2^2*2^2$).</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>1.&nbsp; Make a conjecture of the form "There will be precisely&nbsp;<em>two</em> different ways to factor $r\in D$ as a product of irreducibles of $D$ if and only if ___________," after observing factorization of various $r\in D$.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>2.&nbsp; Prove a correct statement of this relationship, which will be given to you.</p>
+
+{{{id=1|
+
+///
+}}}
