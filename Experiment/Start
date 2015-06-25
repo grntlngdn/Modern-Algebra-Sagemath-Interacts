@@ -1,0 +1,13 @@
+
+<input type="button" id="mButton" onclick="control();" value="Start">
+<script>
+    function control(){
+        window.open("http://localhost:8000/home/pub/1/",'windowName1','fullscreen=yes');
+        window.close();
+    }
+</script>
+
+{{{id=2|
+
+///
+}}}
