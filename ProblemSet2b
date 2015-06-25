@@ -1,0 +1,54 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amsmath, amssymb}
+
+\oddsidemargin=-.25in 
+\evensidemargin=-.25in 
+\topmargin=-.75in 
+\textwidth=7in 
+\textheight=10in
+
+\def\p{\varphi}
+\def\s{\sigma}
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\def\C{\mathbb C}
+
+
+
+
+
+\begin{document}
+
+\begin{enumerate}
+\item
+Look at Euclid's Algorithm with
+\begin{align*}
+	b=&aq_1+r_1,\\
+	a=&r_1q_2+r_2,\\
+	r_1=&r_2q_3+r_3,\\
+	r_2=&r_3q_4+r_4,\\
+	&\vdots\\
+	r_{n-2}=&r_{n-1}q_n+r_n\\
+	r_{n-1}=&r_nq_{n+1}+0	
+\end{align*}
+where $q_i>0$, for $0<i\le n+1$ and $0\le r_i<r_{i-1}<a$, for $1<i\le n$. Prove that for a given $n$ and $r_n$ the least possible value of $b$ is $r_n*F_{n+2}$ (where $F_k$ is the fibonacci sequence; i.e. $F_1=1$, $F_2=1$, $F_3=2, \dots$).
+
+\item
+A \emph{finite continued fraction} is of the form
+\[
+a_0+\cfrac{1}{a_1+
+\cfrac{1}{a_2+
+\cfrac{1}{\begin{split}a_3+\ddots\qquad \quad\\
++\cfrac{1}{a_n}.\end{split}
+}}}
+\]
+Note by adding $a_{n-1}+\frac{1}{a_n}$ to get a single fraction one is given a shorter continued fraction ending with $a_{n-2}+\frac{1}{\frac{a_{n-1}a_n+1}{a_n}}$, and then reciprocating the term on the right one can repeat this process; continuing with such a process one will eventually write this entire continued fraction as a single fraction. Assuming $a_i\in\Z$ for $i\ge0$, this shows the entire continued fraction is equal to some common fraction $\frac{h}{k}$ where $h,k\in \Z$. We will assume this as well as that $a_i>0$ for $i>0$ and $a_n>1$ from now on, in which case given $h,k\in \Z$ there is only one way to write $\frac{h}{k}$ in this form; call this its continued fraction representation.
+
+Let $M>2$ be an integer. Prove that in the set of continued fractions representing some $\frac{h}{k}$ where $0<h,k<M$ the longest continued fraction (the one with $n$ the greatest) is the one corresponding to the $k$ that is the last Fibonacci number ($1,1,2,3\dots$) before $M$ and corresponding to the $h$ that is the last Fibonacci number before $k$.
+%and clean up our terminology by just calling this a \emph{continued fraction} for our purposes
+
+\end{enumerate}
+
+\end{document}
