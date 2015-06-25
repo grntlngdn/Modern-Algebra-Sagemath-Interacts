@@ -1,0 +1,20 @@
+
+<p>1.&nbsp; Prove that there are 12 pairs of numbers $(a_1,a_2)$ with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$0\le a_1 &lt;4, 0\le a_2&lt;6$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">so that</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_1 (\text{mod }4)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_2 (\text{mod }6)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">has a solution.</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">&nbsp;</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">&nbsp;</p>
+<p>2.&nbsp; Let $m_1,m_2\ge 2$. Prove that there are $[m_1,m_2]$ (this is the least common multiple of $m_1$ and $m_2$) pairs of numbers $(a_1,a_2)$ with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$0\le a_1 &lt;m_1, 0\le a_2&lt;m_2$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">so that</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_1 (\text{mod }m_1)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$x\equiv a_2 (\text{mod }m_2)$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">has a solution.</p>
+
+{{{id=1|
+
+///
+}}}
