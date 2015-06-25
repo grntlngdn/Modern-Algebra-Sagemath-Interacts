@@ -1,0 +1,43 @@
+
+<div>&nbsp;</div>
+<p>Let $D$ be the set of positive integers divisible by $4$ (i.e $4 \mathbb Z^+=\{4,8,12,\dots\}$) together with regular addition and multiplication (note that both of these operations on elements of this set result in another element of this set). Call $r$ an irreducible of $D$ if it cannot be factored into a product of two elements of $D$, and reducible otherwise (e.g. $2^5=2^2*2^3$ is reducible, but $3^22^3$ is irreducible in $D$). Note that for some $r$ reducible in $D$, $r$ has multiple factorizations into irreducibles (e.g. $2^3*2^3=2^2*2^2*2^2$). Prove that there will be precisely&nbsp;<em>one</em> way to factor the integer $r\in D$ into irreducibles&nbsp;of $D$ (or $r$ is an irreducible of $D$ itself)&nbsp;if and only if one of three conditions hold: for $i=2,3,4,5,$ or $7$, $r=2^i$; for $q\ne 2$ a prime and $i=2,3,$ or $4$, $r=qp^i$; or for $k\in \mathbb Z^+$ not divisible by 4, $r=k4$.</p>
+
+{{{id=1|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=3|
+
+///
+}}}
