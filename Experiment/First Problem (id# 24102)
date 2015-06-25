@@ -1,0 +1,54 @@
+
+<div><p id='label'></p>
+
+</div>
+<p>Look at Euclid's Algorithm with</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$b=aq_1+r_1,$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$a=r_1q_2+r_2,$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$r_1=r_2q_3+r_3,$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$r_2=r_3q_4+r_4,$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$\vdots$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$r_{n-2}=r_{n-1}q_n+r_n,$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">$$r_{n-1}=r_nq_{n+1}+0$$</p>
+<p style="-qt-block-indent: 0; text-indent: 0px; margin: 0px;">where $q_i&gt;0$, for $0&lt;i\le n+1$ and $0\le r_i&lt;r_{i-1}&lt;a$, for $1&lt;i\le n$. Prove that for a given $n$ and $r_n$ the least possible value of $b$ is $r_n*F_{n+2}$ (where $F_k$ is the fibonacci sequence; i.e. $F_1=1$, $F_2=1$, $F_3=2, \dots$).</p>
+
+{{{id=1|
+
+///
+}}}
+
+<input type="button" id="mButton" onclick="control();" value="Close">
+
+
+<script>
+    var label=document.getElementById('label');
+    var s=parseInt(localStorage.current,10);
+    var m=parseInt(localStorage["session."+s+".m"], 10);
+    var n=parseInt(localStorage["session."+s+".n"], 10);
+    var timeLeft=parseInt(localStorage.timeLeft,10);
+    var warn1=Math.floor(parseInt(localStorage.warn,10)/60000);
+    var warn2=parseInt(localStorage.warn,10);
+    var t1=parseInt(localStorage["session."+s+".problem."+m+".time2."+n],10);
+    label.innerHTML='Problem set '+(m+1)+' Part '+(n+1);
+    setInterval(function(){timing();},1000);
+    function timing(){
+        t1=t1+1;
+    }
+    setTimeout(function(){alert("You have "+warn1+" minutes left on this problem.");},timeLeft-warn2);
+    setTimeout(function(){control();},timeLeft);
+
+
+    function control(){
+        var l=confirm("Please stop working on this problem immediately, "+
+            "and give the experimenter your work \n\nBEFORE PRESSING THE 'ENTER' KEY OR 'OK'.");
+        if (l===true){
+            localStorage["session."+s+".problem."+m+".time2."+n]=t1;
+            window.close();
+        }
+    }
+</script>
+
+{{{id=3|
+
+///
+}}}
