@@ -1,0 +1,489 @@
+
+<p id='sessionID'></p>
+        <input type="button" id="mButton" onclick="control();" value="Begin new">
+        <p id='test'></p>
+        <input type="button" id="sButton" onclick="secondary();" value="Continue previous session">
+        <p id='time0'></p>
+        <p id='time1' style="font-size:xx-large;"></p>
+        <p id='time2'></p>
+        <p id='time3'></p>
+        <p id='time4'></p>
+        <p id='time5'></p>
+        <div id='table'></div>
+        
+        <script>
+            //localStorage.clear();
+            var password;
+            var order=new Array();
+            var assign=new Array();
+            var r=Math.floor(Math.random()*27);
+            var array1=new Array();
+            var array2=new Array();
+            var array3=new Array();
+            var flow=[array1,array2,array3];
+            var overviews=new Array();
+            var s;
+            var t0=document.getElementById('time0');
+            var t1=document.getElementById('time1');
+            var t2=document.getElementById('time2');
+            var t3=document.getElementById('time3');
+            var t4=document.getElementById('time4');
+            var t5=document.getElementById('time5');
+            var table=document.getElementById('table');
+            var m=0;
+            var n=-1;
+            var b=0;
+            var familiar=[0,0,0,0];
+            var numFam=0;
+            var format;
+            var url;
+            var urls=[
+                'http://localhost:8000/home/admin/7/','http://localhost:8000/home/pub/5/',
+                'http://localhost:8000/home/pub/6/','http://localhost:8000/home/pub/7/','http://localhost:8000/home/pub/8/',
+                'http://localhost:8000/home/pub/9/','http://localhost:8000/home/pub/10/',
+                'http://localhost:8000/home/admin/0/','http://localhost:8000/home/pub/11/',
+                'http://localhost:8000/home/pub/12/','http://localhost:8000/home/pub/13/','http://localhost:8000/home/pub/14/',
+                'http://localhost:8000/home/pub/15/','http://localhost:8000/home/pub/16/',
+                'http://localhost:8000/home/admin/1/','http://localhost:8000/home/pub/17/',
+                'http://localhost:8000/home/pub/18/','http://localhost:8000/home/pub/19/','http://localhost:8000/home/pub/20/',
+                'http://localhost:8000/home/pub/21/','http://localhost:8000/home/pub/22/',
+                'http://localhost:8000/home/admin/5/','http://localhost:8000/home/pub/23/',
+                'http://localhost:8000/home/pub/24/','http://localhost:8000/home/pub/25/','http://localhost:8000/home/pub/26/',
+                'http://localhost:8000/home/pub/27/','http://localhost:8000/home/pub/28/'
+            ];
+            var pText1="Please work only on the current \
+problem of the problem set. Copy the ID in the upper left \
+corner of this page onto your paper. If you realize you \
+have previous experience with the second problem of a problem set outside of \
+this experiment, close the problem screen to \
+return to this screen and then press the 'past problem' \
+button. If you remember that you've had previous experience \
+with one of these problems after you have already begun another problem set, \
+simply put a note of this by your work (as pressing the 'past \
+problem' button will register for the current problem \
+instead). If you accidentally close the problem window \
+before you are done, close this window, or notice the ID \
+has changed get the experimenter. \n\n";
+            var pText2="When you are ready, press \
+the 'OK' button and then the 'next' button to proceed. ";
+            var proofIns="YOU ARE ABOUT TO BE PRESENTED WITH A "+
+                    "STATEMENT, WHICH YOU SHOULD ATTEMPT TO PROVE. "+
+                    "PLEASE KEEP SCRAP WORK SEPERATE FROM YOUR PROOF. ";
+                    //"You are about to be presented with a \
+//statement, which you should attempt to prove. Please keep scrap \
+//work seperate from your proof. ";
+            var conjIns="YOU ARE ABOUT TO BE PRESENTED WITH A "+
+                    "PROBLEM SET, WHICH YOU SHOULD READ THOROUGHLY AND "+
+                    "COMPLETELY, SO YOU CAN DETERMINE WHETHER YOU ARE FAMILIAR "+
+                    "WITH THE SECOND PROBLEM OF THE SET. YOU'LL THEN BE PRESENTED WITH AN "+
+                    "INTERACTIVE WORKSHEET REPRESENTING A RELATIONSHIP, "+
+                    "WHICH YOU SHOULD ATTEMPT TO DETERMINE, BUT NOT PROVE FOR THE "+
+                    "FIRST PROBLEM. PLEASE KEEP ALL WORK TOGETHER. ";
+                    //"You are about to be presented with an \
+//interactive worksheet representing a relationship between some \
+//variable. You should manipulate the controls and observe the \
+//output to try to determe a formula for this relationship. Please \
+//write down ten of the combinations of inputs you observed and the \
+//output on your sheet of paper. ";
+            var proof1Ins="YOU ARE ABOUT TO BE PRESENTED WITH A "+
+                    "PROBLEM SET, WHICH YOU SHOULD READ THOROUGHLY AND "+
+                    "COMPLETELY, SO YOU CAN DETERMINE WHETHER YOU ARE FAMILIAR "+
+                    "WITH THE SECOND PROBLEM OF THE SET (IT IS FINE IF YOU ARE "+
+                    "FAMILIAR WITH THE FIRST). YOU'LL THEN BE PRESENTED WITH A "+
+                    "STATEMENT, WHICH YOU SHOULD ATTEMPT TO PROVE. "+
+                    "PLEASE KEEP SCRAP WORK SEPERATE FROM YOUR PROOF. ";
+            var reminder="If you realize you have previous experience with the "+
+                    "second problem of this problem set outside of this experiment, "+
+                    "close the problem screen to return to this screen and then "+
+                    "press the 'past problem' button. Only work on the problem "+
+                    "displayed on the screen. ";
+            var reminderProofs="Please keep scrap work seperate from your proof. ";
+            var reminderConj="Please keep all work together. ";
+            var seconds=0;
+            var timeLimits=[
+                1200000,1200000,1200000,3000000,5000,5000,5000,
+                1200000,1200000,1200000,2880000,5000,5000,5000,
+                1200000,1200000,1200000,2760000,5000,5000,5000,
+                1200000,1200000,1200000,3120000,5000,5000,5000
+            ];
+            
+            localStorage.warn=300000;
+            setInterval(function(){timing();},1000);
+            conditions();
+                //t1.innerHTML='m='+m;
+                //t2.innerHTML='n='+n;
+                //t3.innerHTML='b='+b;
+                //t4.innerHTML='numFam='+numFam;
+            
+            function timing(){
+                if (n===0&&localStorage["session."+s+".problem."+m+".time2."+n]){
+                    //alert('t');
+                    if (localStorage["session."+s+".problem."+m+".time2."+n]>0){
+                        seconds=seconds+1;
+                    }
+                }
+                else if(b===1&&n===1){
+                    seconds=seconds+1;
+                }
+                else{
+                    seconds=0;
+                }
+                //t1.innerHTML=seconds;
+                if (seconds>29){
+                    if (seconds%20>9){
+                        t1.innerHTML="Please continue";
+                    }
+                    else {
+                        t1.innerHTML="Get experimenter if you are unsure how to continue";
+                    }
+                }
+            }//end timing()
+            
+            function conditions(){
+                randomOrder();
+                randomAssignment();
+                pageOrder();
+                
+                function randomOrder(){//randomly selects a permutation to act
+                    //on the problem set order
+                    var r1=Math.random();
+                    order[0]=0;
+                    for (var i=2;i<5;i++){
+                        order[i-1]=i-1;
+                        r1*=i;
+                        for (var j=0;j<i;j++){
+                            order[j]=(order[j]+Math.floor(r1))%i;
+                        }
+                    }
+                }//end randomOrder()
+                
+                
+                function pageOrder(){//based on the problem set order and the
+                    //condition assigned to each this selects the pages to be
+                    //opened and the order
+                    for (var i=0;i<3;i++){
+                        flow[i][0]=assign[i]+(order[i]*7);
+                        flow[i][1]=3+(order[i]*7);
+                        flow[i][2]=-1;
+                        overviews[i]=assign[i]+4+(order[i]*7);
+                    }
+                }//end pageOrder()
+            }//end conditions()
+            
+            function control(){//performs all actions of main button
+                if (n===-1){//records what number participant this is
+                    if(!localStorage.s){
+                        localStorage.s=0;
+                    }
+                    else {
+                        localStorage.s = parseInt(localStorage.s, 10) + 1;
+                    }
+                    s=localStorage.s;
+                    localStorage.current=s;
+                    document.getElementById("mButton").value="next";
+                    document.getElementById("sButton").value="Past problem";
+                    format=r;
+                    var u=100;
+                    for (var i=0;i<4;i++){
+                        format=format+order[3-i]*u;
+                        u=u*10;
+                    }
+                    localStorage["session."+s+".format"]=format;
+                    localStorage["session."+s+".familiar"]="0000";
+                    document.getElementById("sessionID").innerHTML=s*1000000+
+                            format;
+                }
+                if (m===2&&flow[m][n+1]<0&&b===0){
+                    wrapUp();
+                }
+                else{
+                    if (b===0){
+                        prepare();
+                    }
+                    else{
+                        var text;
+                        if (n===1){
+                            var tL=(timeLimits[flow[m][n]]-seconds*1000-
+                                10*parseInt(localStorage["session."+s+".problem."+m+".time2."+0],10))/60000;
+                            text=reminder+reminderProofs;//this is for main proof
+                            text=text+"You have "+Math.floor(tL)+" minutes to work on this problem.";
+                        }
+                        else if (assign[m]===0){
+                            text=reminder+reminderConj;
+                            text=text+"You have "+Math.floor(timeLimits[flow[m][n]]/60000)+
+                                " minutes to work on the first problem.";
+                        }
+                        else{
+                            text=reminder+reminderProofs;//this is for the 
+                            //first proof
+                            text=text+"You have "+Math.floor(timeLimits[flow[m][n]]/60000)+
+                                " minutes to work on the first problem.";
+                        }
+                        var l=confirm(text);
+                        if (l===true){
+                            openPage();
+                        }
+                        else {
+                            b=(b+1)%2;
+                        }
+                    }
+                    b=(b+1)%2;
+                }
+                //t4.innerHTML='numFam='+numFam;
+                //t5.innerHTML='familiar[m]='+familiar[m];
+                
+                
+                function prepare(){//records finishing time and prepares page
+                    //and participant for next problem
+                    /*
+                    if (n>-1){
+                        localStorage["session."+s+".problem."+m+".time2."+n]=
+                            new Date().toString();
+                    }
+                    */
+                    n++;
+                    if (flow[m][n]<0){
+                        n=0;
+                        m++;
+                    }
+                    localStorage["session."+s+".b"]=b;
+                    localStorage["session."+s+".m"]=m;
+                    localStorage["session."+s+".n"]=n;
+                    if (n===1){
+                        alert(pText1 + proofIns + pText2);//this is for main proof
+                    }
+                    else if (assign[m]===0){
+                        alert(pText1 + conjIns + pText2);
+                    }
+                    else{
+                        alert(pText1 + proof1Ins + pText2);//this is for the 
+                        //first proof
+                    }
+                    //t1.innerHTML='m='+m;
+                    //t2.innerHTML='n='+n;
+                    //t3.innerHTML='b='+b;
+                    //t4.innerHTML='problem set='+order[m];
+                    //t5.innerHTML='condition='+assign[m];
+                    //test.innerHTML='mNaN='+isNaN(localStorage["session."+s+".m"]);
+                }//end prepare()
+                
+                function openPage(){//begins activities and records starting
+                    //times
+                    url=urls[flow[m][n]];
+                    if (n===0){
+                        localStorage.timeLeft=timeLimits[flow[m][n]];
+                        localStorage["session."+s+".problem."+m+".time1."+n]=
+                            new Date().toString();
+                        localStorage["session."+s+".problem."+m+".time2."+n]=0;
+                        //alert(localStorage["session."+s+".problem."+m+".time2."+n]);
+                        var page1=window.open
+                        (urls[overviews[m]],'windowname2',"fullscreen=yes,scrollbars=yes");
+                        setTimeout(function(){open2();},20000);//this is the amount of time they can initially look at the overall problem set (set to 60000)
+                        
+                    }
+                    else{
+                        localStorage.timeLeft=timeLimits[flow[m][n]]-seconds*1000-
+                                10*parseInt(localStorage["session."+s+".problem."+m+".time2."+0],10);
+                        localStorage["session."+s+".problem."+m+".time1."+n]=seconds;
+                        localStorage["session."+s+".problem."+m+".time2."+1]=0;
+                                //localStorage["session."+s+".problem."+m+".time2."+0];
+                        var page1=window.open
+                        (url,'windowname2',"fullscreen=yes");
+                        //setTimeout(function(){page1.close();},2000);
+                        //setTimeout(function(){alert(localStorage["session."+s+".problem."+m+".time2."+n]);},6000);
+                    }
+                    
+                    function open2(){
+                        page2=window.open
+                        (url,'windowname2',"fullscreen=yes,scrollbars=yes");
+                        //alert(url);
+                        //setTimeout(function(){alert(localStorage["session."+s+".problem."+m+".time2."+n]);},6000);
+                        //page1.close();
+                        //setTimeout(function(){page2.close();},5000);
+                        //page2.onload = function() {
+                          //  page2.onbeforeunload=func;
+                        //    page2.addEventListener('beforeunload', function () {
+                          //      window.open('http://localhost:8000/home/admin/1/','win3');
+                            //},useCapture);
+                        //};
+                    }//end open2()
+                    //t1.innerHTML='m='+m;
+                    //t2.innerHTML='n='+n;
+                    //t3.innerHTML='b='+b;
+                    //t4.innerHTML='problem set='+order[m];
+                    //t5.innerHTML='condition='+assign[m];
+                    //test.innerHTML='mNaN='+isNaN(localStorage["session."+s+".m"]);
+                }//end openPage()
+                
+                function wrapUp(){//lets experimenter verify everything was
+                    //recorded properly before the participant leaves
+                    localStorage["session."+s+".b"]=b;
+                    localStorage["session."+s+".m"]=m;
+                    localStorage["session."+s+".n"]=n;
+                    password=prompt("Please get experimenter to enter " +
+                        "password.","");
+                    if(password==="conjecture"){
+                        var sess=[];
+                        var txt='<table border="1" width="2000"><tr><td>n</td>'+
+                                '<td>Format</td><td>Familiarity</td>';
+                        for (var i=1;i<4;i++){
+                            txt=txt+'<td>'+'Problem '+i+' Initial Time Part 1'+
+                                    '</td><td>'+'Problem '+i+' Time Part 1 (in sec.)'+
+                                    '</td><td>'+'Problem '+i+' Time Between Parts (in sec.)'+
+                                    '</td><td>'+'Problem '+i+' Time Part 2 (in sec.)'+
+                                    '</td><td>'+'Problem '+i+' Total Time (in sec.)'+
+                                    '</td>';
+                        }
+                        txt=txt+'</tr>';
+                        for (var i=0;i<parseInt(localStorage.s, 10)+1;i++){
+                            txt=txt+'<tr><td>'+i+'</td><td>'+localStorage["session."+i+".format"]+
+                                    '</td><td>'+localStorage["session."+i+".familiar"]+'</td>';
+                            for (var i2=0;i2<3;i2++){
+                                var total=parseInt(localStorage["session."+i+".problem."+i2+".time2."+0],10)+
+                                        parseInt(localStorage["session."+i+".problem."+i2+".time1."+1],10)+
+                                        parseInt(localStorage["session."+i+".problem."+i2+".time2."+1],10);
+                                txt=txt+'<td>'+localStorage["session."+i+".problem."+i2+".time1."+0]+
+                                        '</td><td>'+localStorage["session."+i+".problem."+i2+".time2."+0]+
+                                        '</td><td>'+localStorage["session."+i+".problem."+i2+".time1."+1]+
+                                        '</td><td>'+localStorage["session."+i+".problem."+i2+".time2."+1]+
+                                        '</td><td>'+total+
+                                        '</td>';
+                            }
+                            txt=txt+'</tr>';
+                        }
+                        txt=txt+'</table>';
+                        table.innerHTML=txt;
+                        //test.innerHTML='mNaN='+isNaN(localStorage["session."+s+".m"]);
+                    }
+                }//end wrapUp()
+            }//end control()
+            
+            function secondary(){//does all functions of second button.
+                if (n===-1){
+                    var session=prompt("Enter session ID","");
+                    s=Math.floor(session/1000000);
+                    //t0.innerHTML=s;
+                    format=(session%1000000);
+                    //t1.innerHTML=format;
+                    if (parseInt(localStorage["session."+s+".format"], 10)===format){
+                        localStorage.current=s;
+                        document.getElementById("sButton").value="Past problem";
+                        document.getElementById("mButton").value="next";
+                        r=format%100;
+                        randomAssignment();
+                        var l=1;
+                        var u=10;
+                        for (var i=0;i<4;i++){
+                            order[3-i]=(Math.floor(format/(l*100)))%(u*100);
+                            familiar[3-i]=(Math.floor(
+                                    localStorage["session."+s+".familiar"]/
+                                    l))%u;
+                            l=l*10;
+                            u=u*10;
+                        }
+                        document.getElementById("sessionID").innerHTML=session;
+                        b=parseInt(localStorage["session."+s+".b"], 10);
+                        m=parseInt(localStorage["session."+s+".m"], 10);
+                        n=parseInt(localStorage["session."+s+".n"], 10);
+                        //t1.innerHTML='n='+n;
+                        //t2.innerHTML='m='+m;
+                        //t3.innerHTML='b='+b;
+                        //t4.innerHTML='problem set='+order[m];
+                        //t5.innerHTML='condition='+assign[m];
+                    }
+                    else {
+                        alert("Invalid session. Try again or begin new session.");
+                    }
+                }
+                else if(n===1||b===0){
+                    pastProblem();
+                    b=1;
+                }
+                else{
+                    alert('You are not in the middle of a problem set.');
+                }
+                //t4.innerHTML='numFam='+numFam;
+                //t5.innerHTML='familiar[3]='+familiar[3];
+            }//end secondary()
+            
+            function pastProblem(){//helps to make it so we can analyze only 
+                //novel problems, but have additional results available.
+                familiarity();
+                if (numFam===1){
+                    replacement();
+                }
+                else {
+                    alert("Thank you for registering this problem as one that you "+
+                        "have already seen outside of this experiment. If this is "+
+                        "not true, and you accidentally pressed this button, please "+
+                        "get the experimenter. Otherwise, please continue.");
+                }
+                //t1.innerHTML='numFam='+numFam;
+                
+                function familiarity(){//records that they are familiar with the 
+                    //problem they are working on.
+                    if (familiar[m]===1){
+                        familiar[3]=1;
+                        //alert('c');
+                    }
+                    else {
+                        familiar[m]=1;
+                        //alert('w');
+                    }
+                    localStorage["session."+s+".familiar"]=0;
+                    var l=1;
+                    for(var i=0;i<4;i++){
+                        localStorage["session."+s+".familiar"]=
+                                parseInt(localStorage["session."+s+".familiar"],10)+
+                                familiar[3-i]*l;
+                        l=l*10;
+                    }
+                    numFam=0;
+                    t3.innerHTML=localStorage["session."+s+".familiar"];
+                    for (i=0;i<4;i++){
+                        numFam=numFam+familiar[i];
+                        //alert(i+''+numFam);
+                    }
+                }//end familiarity()
+                
+                function replacement() {//can make one substitution of a problem 
+                    //set for the spare problem set with the same condition.
+                    n=0;
+                    if (n===1){
+                        alert(pText1 + proofIns + pText2);//this is for main proof
+                    }
+                    else if (assign[m]===0){
+                        alert(pText1 + conjIns + pText2);
+                    }
+                    else{
+                        alert(pText1 + proof1Ins + pText2);//this is for the 
+                        //first proof
+                    }
+                    flow[m][0]=assign[m]+order[3]*7;
+                    flow[m][1]=2+order[3]*7;
+                    localStorage["session."+s+".problem."+m+".time2."+n]=0;
+                    seconds=0;
+                }//end replacement
+            }//end pastProblem()
+            
+            function randomAssignment(){//the debruijn sequence of length
+                //27 on {0,1,2}, every segment of which is a different
+                //ordered triple, is used for randomly assigning multiple
+                //conditions
+                var debruijn=[0,0,0,2,0,0,1,0,1,2,0,2,2,0,1,1,2,1,2,2,2,1,1,
+                    1,0,2,1];
+                assignment();
+                
+                function assignment(){//gives proper modular form of
+                    //debruijn sequence and selects a segment based on r
+                    assign[0]=debruijn[r];
+                    assign[1]=debruijn[(r+1)%27];
+                    assign[2]=debruijn[(r+2)%27];
+                }//end assignment()
+            }//end randomAssignment()
+        </script>
+
+{{{id=1|
+
+///
+}}}
